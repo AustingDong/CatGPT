@@ -22,6 +22,7 @@ if __name__ == '__main__':
 
         if text.split(":")[0] == 'path':
             filepath = text.split(":")[1]
+            filepath.strip('\'')
             shutil.copyfile(filepath, './voice/raw/tempvoice.wav')
 
         else:
