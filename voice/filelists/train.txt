@@ -1,0 +1,2 @@
+./dataset/32k/speaker0/Record-_online-voice-recorder.com_-_2_的副本.wav
+./dataset/32k/speaker0/Record-_online-voice-recorder.com_-_1_.wav
