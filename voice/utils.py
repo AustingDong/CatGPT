@@ -14,8 +14,8 @@ from scipy.io.wavfile import read
 import torch
 import torchvision
 from torch.nn import functional as F
-from voice.commons import sequence_mask
-from voice.hubert import hubert_model
+from commons import sequence_mask
+from hubert import hubert_model
 MATPLOTLIB_FLAG = False
 
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
@@ -41,7 +41,7 @@ def f0_to_coarse(f0):
 
 def get_hubert_model(rank=None):
 
-  hubert_soft = hubert_model.hubert_soft("hubert/hubert-soft-0d54a1f4.pt")
+  hubert_soft = hubert_model.hubert_soft("voice/hubert/hubert-soft-0d54a1f4.pt")
   if rank is not None:
     hubert_soft = hubert_soft.cuda(rank)
   return hubert_soft
@@ -130,9 +130,9 @@ def save_checkpoint(model, optimizer, learning_rate, iteration, checkpoint_path)
               'learning_rate': learning_rate}, checkpoint_path)
   clean_ckpt = False
   if clean_ckpt:
-    clean_checkpoints(path_to_models='logs/32k/', n_ckpts_to_keep=3, sort_by_time=True)
+    clean_checkpoints(path_to_models='voice/logs/32k/', n_ckpts_to_keep=3, sort_by_time=True)
 
-def clean_checkpoints(path_to_models='logs/48k/', n_ckpts_to_keep=2, sort_by_time=True):
+def clean_checkpoints(path_to_models='voice/logs/48k/', n_ckpts_to_keep=2, sort_by_time=True):
   """Freeing up space by deleting saved ckpts
 
   Arguments:
@@ -239,7 +239,7 @@ def load_filepaths_and_text(filename, split="|"):
 
 def get_hparams(init=True):
   parser = argparse.ArgumentParser()
-  parser.add_argument('-c', '--config', type=str, default="./configs/base.json",
+  parser.add_argument('-c', '--config', type=str, default="./voice/configs/base.json",
                       help='JSON file for configuration')
   parser.add_argument('-m', '--model', type=str, required=True,
                       help='Model name')

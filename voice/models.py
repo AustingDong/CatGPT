@@ -4,15 +4,15 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
-import voice.attentions as attentions
-import voice.commons as commons
-import voice.modules as modules
+import attentions as attentions
+import commons as commons
+import modules as modules
 
 from torch.nn import Conv1d, ConvTranspose1d, AvgPool1d, Conv2d
 from torch.nn.utils import weight_norm, remove_weight_norm, spectral_norm
-from voice.commons import init_weights, get_padding
-from voice.vdecoder.hifigan.models import Generator
-from voice.utils import f0_to_coarse
+from commons import init_weights, get_padding
+from vdecoder.hifigan.models import Generator
+from utils import f0_to_coarse
 
 class ResidualCouplingBlock(nn.Module):
   def __init__(self,

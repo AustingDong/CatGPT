@@ -7,10 +7,10 @@ from random import shuffle
 import json
 config_template = {
   "train": {
-    "log_interval": 200,
-    "eval_interval": 1000,
+    "log_interval": 20,
+    "eval_interval": 500,
     "seed": 1234,
-    "epochs": 10000,
+    "epochs": 5000,
     "learning_rate": 1e-4,
     "betas": [0.8, 0.99],
     "eps": 1e-9,
@@ -27,8 +27,8 @@ config_template = {
     "port": "8001"
   },
   "data": {
-    "training_files":"filelists/train.txt",
-    "validation_files":"filelists/val.txt",
+    "training_files":"voice/filelists/train.txt",
+    "validation_files":"voice/filelists/val.txt",
     "max_wav_value": 32768.0,
     "sampling_rate": 32000,
     "filter_length": 1280,
@@ -59,9 +59,8 @@ config_template = {
     "n_speakers": 0,
   },
   "spk":{
-    "nen": 0,
-    "paimon": 1,
-    "yunhao": 2
+    "Nahida": 0,
+    
   }
 }
 
@@ -69,10 +68,10 @@ pattern = re.compile(r'^[\.a-zA-Z0-9_\/]+$')
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--train_list", type=str, default="./filelists/train.txt", help="path to train list")
-    parser.add_argument("--val_list", type=str, default="./filelists/val.txt", help="path to val list")
-    parser.add_argument("--test_list", type=str, default="./filelists/test.txt", help="path to test list")
-    parser.add_argument("--source_dir", type=str, default="./dataset/32k", help="path to source dir")
+    parser.add_argument("--train_list", type=str, default="voice/filelists/train.txt", help="path to train list")
+    parser.add_argument("--val_list", type=str, default="voice/filelists/val.txt", help="path to val list")
+    parser.add_argument("--test_list", type=str, default="voice/filelists/test.txt", help="path to test list")
+    parser.add_argument("--source_dir", type=str, default="voice/dataset/32k", help="path to source dir")
     args = parser.parse_args()
     
     train = []
@@ -121,5 +120,5 @@ if __name__ == "__main__":
     config_template["model"]["n_speakers"] = n_speakers
     config_template["spk"] = spk_dict
     print("Writing configs/config.json")
-    with open("configs/config.json", "w") as f:
+    with open("voice/configs/config.json", "w") as f:
         json.dump(config_template, f, indent=2)

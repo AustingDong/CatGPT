@@ -7,16 +7,16 @@ import librosa
 import numpy as np
 import soundfile
 
-from voice.inference import infer_tool
-from voice.inference import slicer
-from voice.inference.infer_tool import Svc
+from inference import infer_tool
+from inference import slicer
+from inference.infer_tool import Svc
 
-def run():
+if __name__ == '__main__':
     logging.getLogger('numba').setLevel(logging.WARNING)
     chunks_dict = infer_tool.read_temp("./voice/inference/chunks_temp.json")
 
-    # model_path = "logs/32k/Nahida.pth"
-    model_path = "./voice/logs/32k/G_1200.pth"
+    model_path = "./voice/logs/32k/Nahida_1200.pth"
+    # model_path = "./voice/logs/32k/G_4500.pth"
     config_path = "./voice/configs/config.json"
     svc_model = Svc(model_path, config_path)
     infer_tool.mkdir(["./voice/raw", "./voice/results"])
@@ -24,8 +24,8 @@ def run():
     # 支持多个wav文件，放在raw文件夹下
     clean_names = ["tempvoice"]
     trans = [0]  # 音高调整，支持正负（半音）
-    spk_list = ['speaker0']  # 每次同时合成多语者音色
-    slice_db = -40  # 默认-40，嘈杂的音频可以-30，干声保留呼吸可以-50
+    spk_list = ['Ayaka']  # 每次同时合成多语者音色
+    slice_db = -50  # 默认-40，嘈杂的音频可以-30，干声保留呼吸可以-50
     wav_format = 'flac'  # 音频输出格式
 
     infer_tool.fill_a_to_b(trans, clean_names)

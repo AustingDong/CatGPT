@@ -14,9 +14,9 @@ import soundfile
 import torch
 import torchaudio
 
-from voice.hubert import hubert_model
-import voice.utils as utils
-from voice.models import SynthesizerTrn
+from hubert import hubert_model
+import utils as utils
+from models import SynthesizerTrn
 
 logging.getLogger('matplotlib').setLevel(logging.WARNING)
 
@@ -111,7 +111,7 @@ def get_f0(x, p_len,f0_up_key=0):
     f0_mel[f0_mel > 0] = (f0_mel[f0_mel > 0] - f0_mel_min) * 254 / (f0_mel_max - f0_mel_min) + 1
     f0_mel[f0_mel <= 1] = 1
     f0_mel[f0_mel > 255] = 255
-    f0_coarse = np.rint(f0_mel).astype(np.int)
+    f0_coarse = np.rint(f0_mel).astype(int)
     return f0_coarse, f0
 
 def clean_pitch(input_pitch):

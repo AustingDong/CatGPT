@@ -1,2 +1,2 @@
-./dataset/32k/speaker0/Record-_online-voice-recorder.com_-_2_.wav
-./dataset/32k/speaker0/Record-_online-voice-recorder.com_.wav
+voice/dataset/32k/Ayaka/vo_DQAQ008_2_ayaka_08.wav
+voice/dataset/32k/Ayaka/vo_DQAQ008_2_ayaka_05b.wav

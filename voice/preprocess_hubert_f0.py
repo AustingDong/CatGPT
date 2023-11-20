@@ -92,7 +92,7 @@ def process(filename):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--in_dir", type=str, default="dataset/32k", help="path to input dir")
+    parser.add_argument("--in_dir", type=str, default="voice/dataset/32k", help="path to input dir")
     args = parser.parse_args()
 
     print("Loading hubert for content...")
