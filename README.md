@@ -2,8 +2,7 @@
 CatGPT is an interactive  project based on ChatGPT, containing text interactions with voice simulation.
 
 Installation
-    for server, it also need:
-        pip intall "uvicorn[standard]"
+    pip intall -r requirements.txt
         
 <h1> Start Server </h1>
-uvicorn run_server:app --reload
+    python run_server.py
